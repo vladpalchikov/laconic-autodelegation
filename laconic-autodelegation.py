@@ -165,7 +165,7 @@ class LaconicAutodelegation():
         '''
         Distribute the rewards from the validator and return the hash
         '''
-        child = pexpect.spawn(f"ethermintd tx distribution withdraw-rewards { self.validator_key } --chain-id={ self.chain_id } --from {self.wallet_name} -y", timeout=10)
+        child = pexpect.spawn(f"ethermintd tx distribution withdraw-rewards { self.validator_key } --chain-id={ self.chain_id } --from {self.wallet_name} --keyring-backend test -y", timeout=10)
         child.expect( b'Enter keyring passphrase:' ) 
         child.sendline( self.password )   
         child.expect( pexpect.EOF )                                                                                                                                     
@@ -178,7 +178,7 @@ class LaconicAutodelegation():
         '''
         Distribute the comission for the validator and return the hash
         '''
-        child = pexpect.spawn(f"ethermintd tx distribution withdraw-rewards { self.validator_key } --chain-id={ self.chain_id } --from {self.wallet_name} --commission -y", timeout=10)
+        child = pexpect.spawn(f"ethermintd tx distribution withdraw-rewards { self.validator_key } --chain-id={ self.chain_id } --from {self.wallet_name} --keyring-backend test --commission -y", timeout=10)
         child.expect( b'Enter keyring passphrase:' ) 
         child.sendline( self.password )   
         child.expect( pexpect.EOF )                                                                                                                                     
@@ -191,7 +191,7 @@ class LaconicAutodelegation():
         '''
         Delegate the amount to the validator
         '''
-        child = pexpect.spawn( f'ethermintd tx staking delegate { self.validator_key } { amount }uaugust --from { self.wallet_name } --chain-id { self.chain_id } -y', timeout=10)
+        child = pexpect.spawn( f'ethermintd tx staking delegate { self.validator_key } { amount }agnt --from { self.wallet_name } --keyring-backend test --chain-id { self.chain_id } -y', timeout=10)
         child.expect( b'Enter keyring passphrase:' ) 
         child.sendline( self.password )   
         child.expect( pexpect.EOF )                                                                                                                                     
